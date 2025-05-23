@@ -25,18 +25,28 @@ function shouldThrottle() {
 }
 
 
-function handleRateLimitError(error) {
-    if (error.response && error.response.status === 429) {
-        return true;
-    }
-    return false;
-}
+export async function translateToEnglish(text) {
+  const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+  const url = corsProxy + 'https://libretranslate.de/translate';
+  
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      q: text,
+      source: 'auto',
+      target: 'en',
+      format: 'text'
+    })
+  });
 
-function handleGenericError(error) {
-    console.error(error);
-    
-}
+  if (!res.ok) {
+    throw new Error('Translation API failed');
+  }
 
+  const data = await res.json();
+  return data.translatedText;
+}
 
 // Function to fetch coordinates by place name
 export async function fetchCoordinatesByName(location){
@@ -65,7 +75,10 @@ const options = {
 
 // Function to fetch places near coordinates w/retry logic for rate limiting
 export async function fetchPlacesNearby(lat, lon, radius = 1000, category = '', retries = 3, delayTime = 1000){
-    if (shouldThrottle()) return;
+    if (shouldThrottle()) {
+        console.log("Throttling active, waiting before sending request...")
+        await delay(requestCooldown);
+    }
 
 const options = {
   method: 'GET',

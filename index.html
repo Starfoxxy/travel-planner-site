@@ -11,28 +11,31 @@
   <body>
     <!-- Background Video-->
      <video autoplay muted loop playsinline id="bgVideo">
-      <source src="\img\Beach_Sunrise.mp4" type="video/mp4" />
+      <source src="/img/Beach_Sunrise.mp4" type="video/mp4" />
      </video>
+
 
      <!-- Overlay for contrast -->
      <div class="video-overlay"></div>
       <div id="app">
 
-        <!-- Background Image Container
-        <div class="background">
-            <img id="bgImage" src="" alt="" aria-hidden="true" />
-        </div> -->
 
          <!-- Main Content -->
-        <main id="cards-container" class="fade-in">
+        <main>
             <h1>TravelHaven</h1>
             <p class="slogan">"Plan less. Beach more. Map your next move."</p>
-            <div class="search-container">
-                <label for ="location-search" class="sr-only">Search for a destination</label>
-                <input type="text" id="location-search" placeholder="Search for a destination..." />
-                <button id="fetchBtn">Search</button>
-            </div>
 
+          <!-- Search Area -->
+          <div class="search-container">
+              <label for ="location-search" class="sr-only">Search for a destination</label>
+              <input type="text" id="location-search" placeholder="Search for a destination..." />
+              <button id="fetchBtn">Search</button>
+          </div>
+
+          <!-- Search + Filters Area -->
+          <section class="search-filter-wrapper">
+    
+          <!-- Filters -->
           <section class="flex-panels-container">
               <!-- Filters Panel -->
             <article class="flex-panel filter-panel" role="complementary" aria-labelledby="filters-heading">
@@ -43,17 +46,28 @@
                 <li><input type="checkbox" id="city" value="urban_environment" aria-label="City"> City</li>
               </ul>
             </article>
-          
+          </section>
 
-            <!-- Featured Destination Panel -->
-            <article class="flex-panel featured-panel" role="region" aria-labelledby="featured-heading">
-              <h2 id="featured-heading">Featured Destinations</h2>
+
+          <!-- Search Results Panel -->
+            <article class="flex-panel filter-panel featured-panel" role="region" aria-labelledby="results-heading">
+              <h2 id="results-heading">Your Search Results</h2>
               <div id="cards-container" class="cards-container" aria-live="polite">
-                <!-- Travel Cards will be dynamically injected here-->
+                <!-- Dynamic search result cards will be injected here -->
               </div>
             </article>
 
-            <!-- Booking Panel -->
+
+            <!-- Featured Destination Panel -->
+            <article class="flex-panel filter-panel featured-panel" role="region" aria-labelledby="featured-heading">
+              <h2 id="featured-heading">Featured Destinations</h2>
+              <div id="featured-cities-container" class="cards-container" aria-live="polite">
+                <!-- Featured destination cards will be injected here-->
+              </div>
+            </article>
+
+
+            <!-- Booking Panel
             <article class="flex-panel booking-panel" role="region" aria-labelledby="booking-heading">
               <h2 id="booking-heading">Booking Details</h2>
               <div class="booking-options">
@@ -71,28 +85,30 @@
 
                 <button aria-label="Book your flight and hotel">Book Now</button>
               </div>
-            </article>
+            </article> -->
           </section>
        </main>
+
 
     <!-- Place details modal -->
   <div id="place-modal" class="modal hidden">
     <div class="modal-content">
-      <button id="modal-close">X</button>
-      <h2 class="modal-title"></h2>
-      <p class="modal-address"></p>
-      <p class="modal-description"></p>
-      <a class="modal-link" href="#" target="_blank">More Info</a>
+      <button class="modal-close" data-target="place-modal" aria-label="Close place details modal">&times;</button>
+      <h2 class="modal-title">Title</h2>
+      <p class="modal-address">Address</p>
+      <p class="modal-description">Description</p>
+      <a class="modal-link" href="#" target="_blank" rel="noopener noreferrer">Explore</a>
     </div>
   </div>
+
 
   <!-- Error modal -->
   <div id="error-modal" class="modal hidden">
     <div class="modal-content">
-      <button id="error-close">X</button>
+      <button class="modal-close" data-target="error-modal" aria-label="Close error modal">&times;</button>
       <p class="error-message"></p>
     </div>
   </div>
-    <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
