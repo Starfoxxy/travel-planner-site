@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel App</title>
+  </head>
+  <body>
+    <!-- Background Video-->
+     <video autoplay muted loop playsinline id="bgVideo">
+      <source src="\img\Beach_Sunrise.mp4" type="video/mp4" />
+     </video>
+
+     <!-- Overlay for contrast -->
+     <div class="video-overlay"></div>
+      <div id="app">
+
+        <!-- Background Image Container
+        <div class="background">
+            <img id="bgImage" src="" alt="" aria-hidden="true" />
+        </div> -->
+
+         <!-- Main Content -->
+        <main id="cards-container" class="fade-in">
+            <h1>TravelHaven</h1>
+            <p class="slogan">"Plan less. Beach more. Map your next move."</p>
+            <div class="search-container">
+                <label for ="location-search" class="sr-only">Search for a destination</label>
+                <input type="text" id="location-search" placeholder="Search for a destination..." />
+                <button id="fetchBtn">Search</button>
+            </div>
+
+          <section class="flex-panels-container">
+              <!-- Filters Panel -->
+            <article class="flex-panel filter-panel" role="complementary" aria-labelledby="filters-heading">
+              <h2 id="filters-heading">Filters</h2>
+              <ul>
+                <li><input type="checkbox" id="beach" value="beaches" aria-label="Beach"> Beach</li>
+                <li><input type="checkbox" id="mountain" value="mountains" aria-label="Mountain"> Mountain</li>
+                <li><input type="checkbox" id="city" value="urban_environment" aria-label="City"> City</li>
+              </ul>
+            </article>
+          
+
+            <!-- Featured Destination Panel -->
+            <article class="flex-panel featured-panel" role="region" aria-labelledby="featured-heading">
+              <h2 id="featured-heading">Featured Destinations</h2>
+              <div id="cards-container" class="cards-container" aria-live="polite">
+                <!-- Travel Cards will be dynamically injected here-->
+              </div>
+            </article>
+
+            <!-- Booking Panel -->
+            <article class="flex-panel booking-panel" role="region" aria-labelledby="booking-heading">
+              <h2 id="booking-heading">Booking Details</h2>
+              <div class="booking-options">
+                <p><strong>Flight Options</strong></p>
+                <ul>
+                  <li>Airline A - $399</li>
+                  <li>Airline B - $499</li>
+                </ul>
+
+                <p><strong>Hotel Options</strong></p>
+                <ul>
+                  <li>Hotel A - $199</li>
+                  <li>Hotel B - $249</li>
+                </ul>
+
+                <button aria-label="Book your flight and hotel">Book Now</button>
+              </div>
+            </article>
+          </section>
+       </main>
+
+    <!-- Place details modal -->
+  <div id="place-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="modal-close">X</button>
+      <h2 class="modal-title"></h2>
+      <p class="modal-address"></p>
+      <p class="modal-description"></p>
+      <a class="modal-link" href="#" target="_blank">More Info</a>
+    </div>
+  </div>
+
+  <!-- Error modal -->
+  <div id="error-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="error-close">X</button>
+      <p class="error-message"></p>
+    </div>
+  </div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
